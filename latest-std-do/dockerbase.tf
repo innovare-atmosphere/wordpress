@@ -1,9 +1,19 @@
+variable "database_password" {
+    default = ""
+}
+
 variable "domain" {
     default = ""
 }
 
 variable "webmaster_email" {
     default = ""
+}
+
+resource "random_password" "database_password" {
+  length           = 16
+  special          = true
+  override_special = "_%@"
 }
 
 
@@ -43,6 +53,7 @@ resource "digitalocean_droplet" "www-wordpress" {
 
   provisioner "file" {
     content      = templatefile("docker-compose.yml.tpl", {
+      database_password = var.database_password != "" ? var.database_password : random_password.database_password.result
     })
     destination = "/root/wordpress/docker-compose.yml"
   }
