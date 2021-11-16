@@ -6,8 +6,8 @@ variable "domain" {
     default = ""
     validation {
       # regex(...) fails if it cannot find a match
-      condition     = can(regex("[0-9]*[a-z]+[a-z0-9]*", var.image_id))
-      error_message = "The image_id value must be a valid AMI id, starting with \"ami-\"."
+      condition     = can(regex("[0-9]*[a-z]+[a-z0-9]*", var.domain))
+      error_message = "Domain name can only contain letters and numbers."
     }
 }
 
