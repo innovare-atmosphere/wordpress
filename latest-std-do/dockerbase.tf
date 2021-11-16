@@ -4,6 +4,11 @@ variable "database_password" {
 
 variable "domain" {
     default = ""
+    validation {
+      # regex(...) fails if it cannot find a match
+      condition     = can(regex("[0-9]*[a-z]+[a-z0-9]*", var.image_id))
+      error_message = "The image_id value must be a valid AMI id, starting with \"ami-\"."
+    }
 }
 
 variable "webmaster_email" {
