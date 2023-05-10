@@ -1,0 +1,4 @@
+name: wordpress-latest-docker
+description: Deploy standard latest docker image of Wordpress on a Digital Ocean droplet
+categories:
+- Marketing
