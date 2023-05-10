@@ -75,7 +75,7 @@ resource "digitalocean_droplet" "www-wordpress" {
       "export PATH=$PATH:/usr/bin",
       # run compose
       "cd /root/wordpress",
-      "docker-compose up -d",
+      "docker compose up -d",
       "rm /etc/nginx/sites-enabled/default",
       "systemctl restart nginx",
       "ufw allow http",
